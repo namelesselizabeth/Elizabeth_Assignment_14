@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th = "http://thymeleaf.org">
+
+	<head> 
+		<title>Welcome</title>
+	</head>
+	
+	<body>
+        <h2> Join A Channel </h2>
+        <p id="usersName" ></p>
+        <script>
+            
+            function nameFunction(prompt_q) {
+                var person;
+                while (true) {
+                    person = (prompt(prompt_q));
+                    if (person == null) {
+                        nameFunction('Enter a valid name');
+                        if (person !=='') {
+                            return person;
+                        }
+                    }
+                    
+                    if (person !=='')
+                        return person;
+                    
+                    
+                    alert('Please enter a valid name');
+                }
+             
+            }
+            
+            var name = nameFunction('What is your name?');
+            var usersName = document.getElementById('usersName').innerHTML = name;
+           
+        </script>
+	</body>
+</html>
