@@ -7,7 +7,12 @@
 	
 	<body>
         <h2> Join A Channel </h2>
-        <p id="usersName" ></p>
+        <p id="usersName"></p>
+        
+        <div th:each="channel : ${channels}">
+            <a th:href="@{/channels/{channelName}(channelName=${channel.channelName})}" > [[${channel.channelName}]]
+            </a>
+        </div>
         <script>
             
             function nameFunction(prompt_q) {
@@ -15,7 +20,7 @@
                 while (true) {
                     person = (prompt(prompt_q));
                     if (person == null) {
-                        nameFunction('Enter a valid name');
+                        person = nameFunction('Enter a valid name');
                         if (person !=='') {
                             return person;
                         }
