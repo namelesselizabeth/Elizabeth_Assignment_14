@@ -1,8 +1,6 @@
 package com.example.Elizabeth_Assignment_14.web;
 
 import java.util.List;
-import java.util.Optional;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -29,12 +27,18 @@ public class ChannelController {
 	return "welcome";
 	}
 	
+	@SuppressWarnings("null")
 	@GetMapping("/channels/{channelName}") 
 		public String getChannelPage(ModelMap model, @PathVariable String channelName) {
-			Optional<Channel> channel = channelService.findByChannelName(channelName);
-			List<Chat> chatChannelSorted = chatService.getChats(channelName);
+			Channel channel = channelService.findByChannelName(channelName);
+			List<Chat> chatsChannelSorted = chatService.getChats(channelName);
+			
+			if(chatsChannelSorted == null) {
+				Chat chat = new Chat(" ", channel);
+				chatsChannelSorted.add(chat);
+			}
 			model.put("channel", channel);
-			model.put("chats", chatChannelSorted);
+			model.put("chats", chatsChannelSorted);
 			return "channel";
 		}
 	

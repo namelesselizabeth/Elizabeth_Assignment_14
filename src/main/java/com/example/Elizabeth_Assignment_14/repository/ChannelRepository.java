@@ -2,8 +2,6 @@ package com.example.Elizabeth_Assignment_14.repository;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
-
 import org.springframework.stereotype.Repository;
 
 import com.example.Elizabeth_Assignment_14.domain.Channel;
@@ -21,10 +19,12 @@ public class ChannelRepository {
 		channels.add(general);
 	}
 	
-	public Optional<Channel> findByName(String channelName) {
-		return channels.stream()
-				.filter(channel -> channel.getChannelName().equals(channelName))
-				.findAny();
+	public Channel findByName(String channelName) {
+		Channel channel = channels.stream()
+				.filter(channel1 -> channel1.getChannelName().equals(channelName))
+				.findAny().get();
+		
+		return channel;
 	}
 
 	
