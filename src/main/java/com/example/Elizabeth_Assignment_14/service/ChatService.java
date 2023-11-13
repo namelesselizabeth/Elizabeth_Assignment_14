@@ -14,6 +14,7 @@ public class ChatService {
 	@Autowired
 	private ChannelService channelService;
 	
+	@Autowired
 	private ChatRepository chatRepository;
 	
 	public List<Chat> getChats(String channelName) {

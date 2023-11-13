@@ -14,20 +14,21 @@
             </a>
         </div>
         <script>
+            var person = sessionStorage.getItem("name")
             
             function nameFunction(prompt_q) {
-                var person;
+                var name;
                 while (true) {
-                    person = (prompt(prompt_q));
-                    if (person == null) {
-                        person = nameFunction('Enter a valid name');
-                        if (person !=='') {
-                            return person;
+                    name = (prompt(prompt_q));
+                    if (name == null) {
+                        name = nameFunction('Enter a valid name');
+                        if (name !=='') {
+                            return name;
                         }
                     }
                     
-                    if (person !=='')
-                        return person;
+                    if (name !=='')
+                        return name;
                     
                     
                     alert('Please enter a valid name');
@@ -36,7 +37,7 @@
             }
             
             var name = nameFunction('What is your name?');
-            var usersName = document.getElementById('usersName').innerHTML = name;
+            person = document.getElementById('usersName').innerHTML = name;
            
         </script>
 	</body>

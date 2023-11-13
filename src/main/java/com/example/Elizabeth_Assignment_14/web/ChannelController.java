@@ -27,16 +27,17 @@ public class ChannelController {
 	return "welcome";
 	}
 	
-	@SuppressWarnings("null")
+
 	@GetMapping("/channels/{channelName}") 
 		public String getChannelPage(ModelMap model, @PathVariable String channelName) {
 			Channel channel = channelService.findByChannelName(channelName);
+			
 			List<Chat> chatsChannelSorted = chatService.getChats(channelName);
 			
-			if(chatsChannelSorted == null) {
-				Chat chat = new Chat(" ", channel);
-				chatsChannelSorted.add(chat);
-			}
+//			if(chatsChannelSorted == null) {
+//				Chat chat = new Chat("hi ", channel);
+//				//chatsChannelSorted.add(chat);
+//			}
 			model.put("channel", channel);
 			model.put("chats", chatsChannelSorted);
 			return "channel";
