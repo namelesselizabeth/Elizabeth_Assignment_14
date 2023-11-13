@@ -10,6 +10,15 @@
     
     <body>
     
-        
+        <div class="chatbox">
+            <div th:each="chat : ${chats}"> 
+                <p> [[${chat.chatMessage}]]</p>
+            </div>
+        </div >
+            
+        <div class="textSubmission">
+            <label for="textBox"> Message Area: </label> <br>
+            <textarea id="textBox" name="textBox" rows="4" cols="50" minlength="1" placeholder="Enter text here..."> </textarea>
+        </div>
     </body>
 </html>
