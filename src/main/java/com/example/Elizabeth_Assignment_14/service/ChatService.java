@@ -17,9 +17,18 @@ public class ChatService {
 	@Autowired
 	private ChatRepository chatRepository;
 	
+	
 	public List<Chat> getChats(String channelName) {
 		Channel channel = channelService.findByChannelName(channelName);
 		return chatRepository.findByChannel(channel);
 	}
 
+	public void addChats(Chat chat) {
+		Channel channel = channelService.findByChannelName(chat.getChannel().getChannelName());
+		if(channel !=null ) {
+			List<Chat> chatsByChannel = getChats(chat.getChannel().getChannelName());
+			chatsByChannel.add(chat);
+			chatRepository.saveMessages(chat.getChannel().getChannelName(), chatsByChannel);
+		}
+	}
 }

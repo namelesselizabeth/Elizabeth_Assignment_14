@@ -19,4 +19,7 @@ public class ChatRepository {
 		return chatsByChannel;
 	}
 
+	public void saveMessages(String channelName, List<Chat> chatByChannel) {
+		chats.put(channelName, chatByChannel);
+	}
 }

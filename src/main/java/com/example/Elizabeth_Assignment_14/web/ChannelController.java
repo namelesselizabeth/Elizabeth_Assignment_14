@@ -34,10 +34,6 @@ public class ChannelController {
 			
 			List<Chat> chatsChannelSorted = chatService.getChats(channelName);
 			
-//			if(chatsChannelSorted == null) {
-//				Chat chat = new Chat("hi ", channel);
-//				//chatsChannelSorted.add(chat);
-//			}
 			model.put("channel", channel);
 			model.put("chats", chatsChannelSorted);
 			return "channel";

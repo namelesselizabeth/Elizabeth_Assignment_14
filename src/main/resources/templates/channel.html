@@ -5,6 +5,7 @@
         <script>
             var person = sessionStorage.getItem("name")
             person = document.getElementById('usersName').innerHTML = name
+            
         </script>
     </head>
     
@@ -12,13 +13,42 @@
     
         <div class="chatbox">
             <div th:each="chat : ${chats}"> 
+               
                 <p> [[${chat.chatMessage}]]</p>
             </div>
         </div >
             
+      
+
         <div class="textSubmission">
             <label for="textBox"> Message Area: </label> <br>
             <textarea id="textBox" name="textBox" rows="4" cols="50" minlength="1" placeholder="Enter text here..."> </textarea>
         </div>
+        
+          <script>
+            var textBox = document.querySelector('#textBox')
+                                                  
+            textBox.addEventListener('keyup', (event) => {
+                var name = event.key;
+                
+                if (name === 13) {
+                var textMessage = {
+                    'text': textBox.value,
+                    'channelName': channel.value
+                }
+                fetch('/chats', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(textMessage)
+                })
+                .then(response=> {getChats()})
+            }, false)
+            
+            function getChats() {
+                
+            }
+        </script>
     </body>
 </html>
